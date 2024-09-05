@@ -1,6 +1,7 @@
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
 import assemblyai as aai
+import os
 
 app = FastAPI()
 # Configure CORS
@@ -12,7 +13,7 @@ app.add_middleware(
     allow_headers=["*"],  
 )
     
-aai.settings.api_key = "f9b4280397944e82a37f915c72cdbc69"
+aai.settings.api_key = os.getenv("API")
 FILE_URL = "https://github.com/AssemblyAI-Community/audio-examples/raw/main/20230607_me_canadian_wildfires.mp3"
 
 @app.post("/text")
