@@ -1,4 +1,4 @@
-from fastapi import FastAPI, HTTPException, Request
+from fastapi import FastAPI, HTTPException, Form
 from fastapi.middleware.cors import CORSMiddleware
 import assemblyai as aai
 import os
@@ -17,7 +17,7 @@ aai.settings.api_key = os.getenv("API")
 FILE_URL = "https://github.com/AssemblyAI-Community/audio-examples/raw/main/20230607_me_canadian_wildfires.mp3"
 
 @app.post("/text")
-def text(url: str=Request[...]):
+def text(url: str=Form(...)):
     try:
         r=""
         transcriber = aai.Transcriber()
